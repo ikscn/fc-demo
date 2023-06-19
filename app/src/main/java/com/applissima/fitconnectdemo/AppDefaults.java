@@ -16,8 +16,8 @@ public class AppDefaults {
     //public static final String LOG_LOCATION_ID = "212901"; -> transferred to Settings
 
     // --- API Defaults ---
-    public static final String SCRT_KEY = "AyhAn0ndErEr50ytEzE15ErkAnbI1IcI";
-    public static final String API_PASS = "5550452";
+    public static final String SCRT_KEY = "";
+    public static final String API_PASS = "";
     public static final String API_RETRIEVE_KEY = "retrieveProfile";
     public static final String API_INSERTDATA_KEY = "insertExerciseData";
     public static final String API_INSERTLOGDATA_KEY = "insertLogData";
@@ -39,7 +39,7 @@ public class AppDefaults {
     public static final String TIME_FORMAT_BACKUP = "yyyyMMdd";
     public static final String TIME_FORMAT_FILENAME = "yyyy_MM_dd_HH_mm_ss";
     public static final String TIME_FORMAT_MINAGGID = "yyyyMMddHHmmss";
-    public static final String COLLECTOR_EMAIL = "etezel@gmail.com";
+    public static final String COLLECTOR_EMAIL = "";
 
     // --- REALM Defaults ---
     public static final String REALM_FILENAME = "fitConnect.realm";
@@ -59,8 +59,8 @@ public class AppDefaults {
     public static final String SETTINGS_PW = "qw";
 
     // --- Email Defaults ---
-    public static final String GMAIL_USER = "club.fitconnect@gmail.com";
-    public static final String GMAIL_PW = "beykoz01";
+    public static final String GMAIL_USER = "";
+    public static final String GMAIL_PW = "";
     public static final String STR_END_OF_DAY = "21:00";
     public static final String STR_MIDNIGHT = "00:05";
     public static final String STR_MORNING = "07:00";
