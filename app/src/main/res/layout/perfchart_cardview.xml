@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/perfchart_card_view"
+    android:layout_width="620dp"
+    android:layout_height="320dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="10dp"
+    android:background="@null">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@null">
+
+       <!-- <eightbitlab.com.blurview.BlurView
+            android:id="@+id/perfBlurView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:blurOverlayColor="@color/colorOverlay"
+            android:layout_weight="3">-->
+
+            <RelativeLayout
+                android:id="@+id/ch_top_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/userWhiteTransparent"
+                android:layout_weight="3">
+
+                <!-- Profil -->
+
+
+                <RelativeLayout
+                    android:id="@+id/ch_profile"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp"
+                    android:layout_centerVertical="true">
+
+                    <!--<com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/ch_personImage"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/profiledefault"
+                        card_view:civ_border_width="0dp"
+                        android:layout_centerHorizontal="true"/>-->
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ch_personImage"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/profiledefault"
+                        card_view:civ_border_width="0dp"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:id="@+id/ch_nicknameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black"
+                        android:layout_below="@id/ch_personImage"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"/>
+
+                </RelativeLayout>
+
+
+                <!-- Summary LinearLayout -->
+
+                <LinearLayout
+                    android:id="@+id/ch_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_toEndOf="@id/ch_profile"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:gravity="center">
+
+                    <!-- Süre -->
+
+                    <RelativeLayout
+                        android:id="@+id/ch_sumRl_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/ch_sum_duration_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Süre"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ch_sum_duration_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_duration_title"
+                            android:layout_centerHorizontal="true"/>
+
+
+                        <TextView
+                            android:id="@+id/ch_sum_duration_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="dk"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_duration_value"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <!-- Top Kalori -->
+
+                    <RelativeLayout
+                        android:id="@+id/ch_sumRl_totCal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/ch_sum_totCal_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Top Kalori"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ch_sum_totCal_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_totCal_title"
+                            android:layout_centerHorizontal="true"/>
+
+
+                        <TextView
+                            android:id="@+id/ch_sum_totCal_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kal"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_totCal_value"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <!-- Kalori / dk -->
+
+                    <RelativeLayout
+                        android:id="@+id/ch_sumRl_calMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/ch_sum_calMin_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kalori / dk"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ch_sum_calMin_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_calMin_title"
+                            android:layout_centerHorizontal="true"/>
+
+
+                        <TextView
+                            android:id="@+id/ch_sum_calMin_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kal"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_calMin_value"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <!-- Maks Perf -->
+
+                    <RelativeLayout
+                        android:id="@+id/ch_sumRl_maxPerf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/ch_sum_maxPerf_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Maks Perf"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ch_sum_maxPerf_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_maxPerf_title"
+                            android:layout_centerHorizontal="true"/>
+
+
+                        <TextView
+                            android:id="@+id/ch_sum_maxPerf_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="%"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_maxPerf_value"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <!-- Ort Perf -->
+
+                    <RelativeLayout
+                        android:id="@+id/ch_sumRl_avgPerf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/ch_sum_avgPerf_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ort Perf"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ch_sum_avgPerf_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_avgPerf_title"
+                            android:layout_centerHorizontal="true"/>
+
+
+                        <TextView
+                            android:id="@+id/ch_sum_avgPerf_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="%"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_avgPerf_value"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <!-- Maks Nabız -->
+
+                    <RelativeLayout
+                        android:id="@+id/ch_sumRl_maxHr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/ch_sum_maxHr_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Maks Nabız"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ch_sum_maxHr_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_maxHr_title"
+                            android:layout_centerHorizontal="true"/>
+
+
+                        <TextView
+                            android:id="@+id/ch_sum_maxHr_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="bpm"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_maxHr_value"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <!-- Ort Nabız -->
+
+                    <RelativeLayout
+                        android:id="@+id/ch_sumRl_avgHr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/ch_sum_avgHr_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ort Nabız"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/ch_sum_avgHr_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_avgHr_title"
+                            android:layout_centerHorizontal="true"/>
+
+
+                        <TextView
+                            android:id="@+id/ch_sum_avgHr_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="bpm"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:layout_below="@id/ch_sum_avgHr_value"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        <!--</eightbitlab.com.blurview.BlurView>-->
+
+        <RelativeLayout
+            android:id="@+id/ch_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/userDarkGrey2">
+
+            <!-- Graphs LinearLayout -->
+
+            <LinearLayout
+                android:id="@+id/ch_graphs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+
+                <!-- Graph Kalori / Zone -->
+
+                <RelativeLayout
+                    android:id="@+id/ch_graphsRl_calZone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_weight="5">
+
+                    <TextView
+                        android:id="@+id/ch_graph_calZone_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Kalori / Zone"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/white"
+                        android:gravity="center_horizontal"/>
+
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/ch_graph_calZone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/ch_graph_calZone_title">
+
+                    </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+
+                </RelativeLayout>
+
+                <!-- Graph Nabız / Dakika -->
+
+                <RelativeLayout
+                    android:id="@+id/ch_graphsRl_hrMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:id="@+id/ch_graph_hrMin_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nabız / Dakika"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/white"
+                        android:gravity="center_horizontal"/>
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/ch_graph_hrMin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/ch_graph_hrMin_title">
+
+
+                    </com.github.mikephil.charting.charts.LineChart>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

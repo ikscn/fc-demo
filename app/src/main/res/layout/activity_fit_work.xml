@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.applissima.fitconnectdemo.FitWorkActivity"
+    android:background="@drawable/bg1">
+
+    <RelativeLayout
+        android:id="@+id/logoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="@color/userWhite"
+            android:text="00:00"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"/>
+
+        <ImageView
+            android:id="@+id/image_fitconnect"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:src="@drawable/fitconnect_logofull"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
+
+        <!--<TextView
+            android:id="@+id/updateSuccess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="@color/userWhite"
+            android:text="UPDATED!"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>-->
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/logoLayout">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fitWorkRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+        <!--<RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/progressLayoutFw">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/progressBarFw" />
+
+                <TextView
+                    android:id="@+id/progressText"
+                    android:text="@string/text_waiting_start"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:layout_below="@+id/progressBarFw"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"/>
+
+            </RelativeLayout>-->
+
+        <!--<Button
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:text="Force Crash!"
+            android:onClick="forceCrash"
+            android:background="@drawable/custombutton"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="bottom|center"/>-->
+
+
+        <FrameLayout
+            android:id="@+id/chart_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:visibility="gone"
+            android:alpha="0.99"
+            android:elevation="10dp">
+
+                <include layout="@layout/perfchart_cardview" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/testButtonsLayout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:padding="10dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/removePerson"
+                android:text="Remove Last"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/custombutton"
+                android:onClick="removePerson"
+                android:layout_gravity="bottom|start"/>
+
+            <Button
+                android:id="@+id/btn_forceAnrMain"
+                android:text="Force ANR!"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/custombutton"
+                android:onClick="forceANRMain"
+                android:layout_marginStart="10dp"/>
+
+            <Button
+                android:id="@+id/pauseService"
+                android:text="Pause Service"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/custombutton"
+                android:onClick="testBroadcastPauseService"
+                android:layout_gravity="bottom|end"
+                android:layout_marginStart="10dp"/>
+
+            <Button
+                android:id="@+id/addPerson"
+                android:text="Add Person"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/custombutton"
+                android:onClick="addPerson"
+                android:layout_gravity="bottom|end"
+                android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <!--<TextView
+        android:id="@+id/text_retry_conn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_retry_conn"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:layout_centerInParent="true"
+        android:padding="10dp"/>
+
+
+    <Button
+        android:id="@+id/btn_retry_conn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_retry_conn"
+        android:textAllCaps="false"
+        android:padding="10dp"
+        android:background="@drawable/custombutton"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/text_retry_conn"
+        android:onClick="retryConnection"/>-->
+
+</RelativeLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#3F51B5</color>
+
+    <color name="userWhite">#FFFFFF</color>
+    <color name="userBlack">#000000</color>
+    <color name="userDarkGrey">#50565B</color>
+    <color name="userDarkGrey2">#3E3F4B</color>
+    <color name="userGrey">#AEB2B5</color>
+    <color name="userRed">#FF0018</color>
+    <color name="userBlue">#0099DC</color>
+    <color name="userOrange">#FFBF11</color>
+    <color name="userGreen">#00A650</color>
+
+    <color name="userDarkBlue">#192B3F</color>
+    <color name="userSkyBlue">#288CFF</color>
+
+    <color name="userDarkGreyTransparent">#B750565B</color>
+    <color name="userWhiteTransparent">#B7FFFFFF</color>
+
+    <color name="colorOverlay">#78ffffff</color>
+    <color name="background_gradient_start">#000000</color>
+    <color name="background_gradient_end">#DDDDDD</color>
+    <color name="fastlane_background">#0096a6</color>
+    <color name="search_opaque">#ffaa3f</color>
+    <color name="selected_background">#ffaa3f</color>
+    <color name="detail_background">#0096a6</color>
+    <color name="soft_opaque">#30000000</color>
+    <color name="img_soft_opaque">#30FF0000</color>
+    <color name="img_full_opaque">#00000000</color>
+    <color name="black_opaque">#AA000000</color>
+    <color name="black">#59000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="orange_transparent">#AAFADCA7</color>
+    <color name="orange">#FADCA7</color>
+    <color name="yellow">#EEFF41</color>
+    <color name="default_background">#3d3d3d</color>
+</resources>

@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.applissima.fitconnectdemo.MainActivity">
+
+    <item
+        android:id="@+id/wifiStatusIcon"
+        android:orderInCategory="100"
+        android:title="Wifi"
+        android:icon="@drawable/wifi_off"
+        app:showAsAction="always"
+        android:visible="true"
+        android:enabled="false"/>
+
+    <item
+        android:id="@+id/ipText"
+        android:orderInCategory="200"
+        android:title="IP: "
+        app:showAsAction="always"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/settingsButton"
+        android:orderInCategory="300"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings"
+        app:showAsAction="always"
+        android:visible="true"/>
+
+</menu>

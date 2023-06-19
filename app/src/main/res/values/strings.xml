@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">FcCollector</string>
+    <string name="startButton">Başlat</string>
+    <string name="title_activity_settings">Uygulama Ayarları</string>
+
+    <string name="text_enter_admin_pw">Admin şifrenizi giriniz.</string>
+
+    <string name="text_waiting_start">FitConnect Başlatılıyor…</string>
+    <string name="text_waiting_wifi">Wi-Fi bağlantısı bekleniyor…</string>
+    <string name="text_waiting_hub">Çevredeki Hub cihazları bulunuyor…</string>
+    <string name="text_retry_conn">İnternet bağlantısı kurulamadı…</string>
+    <string name="button_retry_conn">Yeniden Bağlanmayı Dene</string>
+    <string name="text_check_timedate">Lütfen saat ve tarih ayarlarını kontrol ediniz!</string>
+    <string name="text_waiting_update">Yeni versiyon indiriliyor, lütfen bekleyiniz.</string>
+    <string name="text_error_update">Yüklemede bir sorun oluştu. Lütfen tekrar deneyin.</string>
+
+    <string name="text_error_notnull">Geçerli bir değer giriniz.</string>
+    <string name="text_loc_info_saved">Lokasyon ve Cihaz bilgisi kaydedildi.</string>
+
+    <string name="text_user_notfound">Kullanıcı profili bulunamadı:</string>
+
+    <string name="set_machineIp">Cihaz IP</string>
+    <string name="set_hubMacAddress">Hub Mac Adresi</string>
+    <string name="set_appVersion">Kullanılabilir Versiyon</string>
+    <string name="set_currentVersion">Mevcut Versiyon</string>
+    <string name="set_appIsUpToDate">(Güncel)</string>
+    <string name="set_siteId">Cihaz ID</string>
+    <string name="set_locationId">Lokasyon ID</string>
+    <string name="set_clubName">Kulüp Adı</string>
+    <string name="set_simPersonCnt">Simülasyon Sporcu Sayısı</string>
+    <string name="set_checkProfileUpd">Profil Güncellemelerini Kontrol Et (dk)</string>
+    <string name="set_checkUnkProfile">Bulunamayan Profili Tekrar Kontrol Et (dk)</string>
+    <string name="set_checkTempBelts">Ortak Belt Kullanım Verisini Kontrol Et (dk)</string>
+    <string name="set_tempBeltsExp">Ortak Belt Kullanım Süresi (dk)</string>
+    <string name="set_uploadMinAgg">Dakika Verisini Sunucuya Gönder (dk)</string>
+    <string name="set_maxUploadData">Dakika Verisi Gönderme Limiti</string>
+    <string name="set_uploadLogs">Log Verisini Sunucuya Gönder (dk)</string>
+    <string name="set_distSensibility">Arama Mesafesi Hassasiyeti</string>
+    <string name="set_workSumPeriod">Çalışma Özetini Gösterme Sıklığı (dk)</string>
+    <string name="set_workSumDuration">Çalışma Özetini Gösterme Süresi (sn)</string>
+    <string name="set_zoneColors">Zone Renkleri</string>
+    <string name="set_cardDistribution">Yerleştirme Düzeni</string>
+    <string name="set_timeDiff">Saat Farkı</string>
+    <string name="set_lockAppForDevice">Cihazı Bu Uygulamaya Kilitle</string>
+    <string name="set_clubEmail">Kulüp Email</string>
+    <string name="set_clubPw">Kulüp Şifre</string>
+
+    <string name="prog_clubLogin">Giriş Yapılıyor…</string>
+
+    <string name="crash_toast_text">Uygulamada bir sorun yaşandı. Teknik ekibe bilgi gönderildi.</string>
+
+
+    <string name="title_activity_tv">Leanback TvActivity Title</string>
+    <string name="browse_title"><![CDATA[Videos by Your Company]]></string>
+    <string name="related_movies">Related Videos</string>
+    <string name="vertical_grid_title"><![CDATA[Vertical Video Grid]]></string>
+    <string name="error">Error</string>
+    <string name="ok">OK</string>
+    <string name="pause">Pause</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+    <string name="init_text">00:00</string>
+    <string name="play_pause_description">Play Pause Button</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="no_video_found">No video was found</string>
+    <string name="about_app">About DemoCast Player</string>
+    <string name="version">Version: %1$s</string>
+    <string name="popular_header">Popular Videos</string>
+    <string name="preferences">PREFERENCES</string>
+    <string name="grid_view">Grid View</string>
+    <string name="error_fragment">Error Fragment</string>
+    <string name="personal_settings">Personal Settings</string>
+    <string name="watch_trailer_1">Watch trailer</string>
+    <string name="watch_trailer_2">FREE</string>
+    <string name="rent_1">Rent By Day</string>
+    <string name="rent_2">From $1.99</string>
+    <string name="buy_1">Buy and Own</string>
+    <string name="buy_2">AT $9.99</string>
+    <string name="movie">Movie</string>
+    <string name="should_start">shouldStart</string>
+    <string name="start_position">startPosition</string>
+    <string name="search_results">Search Results</string>
+
+    <!-- Error messages -->
+    <string name="video_error_media_load_timeout">Media loading timed out</string>
+    <string name="video_error_server_inaccessible">Media server was not reachable</string>
+    <string name="video_error_unknown_error">Failed to load video</string>
+    <string name="error_fragment_message">An error occurred</string>
+    <string name="dismiss_error">Dismiss</string>
+    <string name="oops">Oops</string>
+
+    <!-- AlertDialog Update Available -->
+    <string name="appverupdate_update_available">Available a new update!</string>
+    <string name="appverupdater_content_update_available">Update %1$s mobile app to version %2$s</string>
+    <string name="appverupdater_notes_update_available">Update %1$s mobile app to version %2$s \nFeatures: \n%3$s</string>
+    <string name="appverupdater_positivetext_update_available">Update</string>
+    <string name="appverupdater_negativetext_update_available">Later</string>
+    <!-- AlertDialog Not Update Available -->
+    <string name="appverupdate_not_update_available">No updates available!</string>
+    <string name="appverupdater_content_not_update_available">You have the latest version of the application</string>
+    <!-- ProgressDialog Update Available -->
+    <string name="appverupdater_progressdialog_message_update_available">Download</string>
+    <!-- AlertDialog Denied Permissin -->
+    <string name="appverupdater_denied_message">If you reject permission,you can not use this service</string>
+    <string name="btnClearLogs">Tüm Logları Sil</string>
+
+
+</resources>

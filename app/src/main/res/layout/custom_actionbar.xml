@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/userGrey">
+
+    <ImageButton
+        android:id="@+id/btn_settings"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@null"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_settings"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:id="@+id/custom_submenu"
+        android:layout_below="@+id/btn_settings"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="8dp"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginTop="5dp"
+            android:id="@+id/ln1" />
+
+        <TextView
+            android:id="@+id/sub_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uygulama Ayarları"
+            android:layout_below="@id/ln1"
+            android:layout_marginTop="5dp"
+            android:padding="4dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginTop="5dp"
+            android:id="@+id/ln2"
+            android:layout_below="@id/sub_settings"/>
+
+        <TextView
+            android:id="@+id/sub_showOrHideTstBtns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Butonlarını Göster/Gizle"
+            android:layout_below="@id/ln2"
+            android:layout_marginTop="5dp"
+            android:padding="4dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginTop="5dp"
+            android:id="@+id/ln3"
+            android:layout_below="@id/sub_showOrHideTstBtns"/>
+
+        <TextView
+            android:id="@+id/sub_stopWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aktiviteyi Durdur"
+            android:layout_below="@id/ln3"
+            android:layout_marginTop="5dp"
+            android:padding="4dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginTop="5dp"
+            android:id="@+id/ln4"
+            android:layout_below="@id/sub_stopWork"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

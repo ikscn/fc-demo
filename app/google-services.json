@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "611865342319",
+    "firebase_url": "https://fitconnectkiosk.firebaseio.com",
+    "project_id": "fitconnectkiosk",
+    "storage_bucket": "fitconnectkiosk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611865342319:android:a641544dfc852682",
+        "android_client_info": {
+          "package_name": "co.zapplin.fitconnectkiosk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611865342319-21bmfdih2h1rhah2qcjrsbngfaeddfg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxHToqHt4s5dMK8mqClQ4fkWXF20Tbn94"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611865342319:android:75640b06f2e6f438",
+        "android_client_info": {
+          "package_name": "com.applissima.fitconnectdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611865342319-21bmfdih2h1rhah2qcjrsbngfaeddfg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxHToqHt4s5dMK8mqClQ4fkWXF20Tbn94"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

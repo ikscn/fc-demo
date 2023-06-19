@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="380dp"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <RelativeLayout
+        android:id="@+id/clubLoginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/clubEmailLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/clubEmail_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/set_clubEmail"
+                android:textColor="@color/userWhite"/>
+
+            <EditText
+                android:id="@+id/clubEmail_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:ems="10"
+                android:inputType="textWebEmailAddress"
+                android:backgroundTint="@color/userWhite"
+                android:textColor="@color/userWhite"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/clubPwLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/clubEmailLayout">
+
+            <TextView
+                android:id="@+id/clubPw_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/set_clubPw"
+                android:textColor="@color/userWhite"/>
+
+            <EditText
+                android:id="@+id/clubPw_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:backgroundTint="@color/userWhite"
+                android:textColor="@color/userWhite"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/siteInfoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/clubPwLayout">
+
+            <TextView
+                android:id="@+id/siteId_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/set_siteId"
+                android:textColor="@color/userWhite"/>
+
+            <EditText
+                android:id="@+id/siteId_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:ems="10"
+                android:inputType="number"
+                android:backgroundTint="@color/userWhite"
+                android:textColor="@color/userWhite"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/clubLoginOkButton"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/siteInfoLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/custombutton"
+            android:text="Tamam" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/clubLoginProgressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prog_clubLogin"
+            android:textColor="@color/userWhite"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
