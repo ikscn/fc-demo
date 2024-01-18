@@ -29,7 +29,6 @@ public class ProgressDialogHelper {
         dialog = null;
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
-        //LayoutInflater inflater = activity.getLayoutInflater();
         LayoutInflater inflater = (LayoutInflater) activity.getBaseContext().getSystemService(activity.LAYOUT_INFLATER_SERVICE);
         View progressView = inflater.inflate(R.layout.progress_layout, null);
         TextView progressTextView = (TextView) progressView.findViewById(R.id.progressTextView);
