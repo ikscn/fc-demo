@@ -34,7 +34,6 @@ public class RemoteLogCat extends AsyncTask<String, String, String> {
             this.execute("http://www.remotelogcat.com/log.php?apikey=" + apikey +
                     "&channel=" + URLEncoder.encode(channel, "utf-8") +
                     "&log=" + URLEncoder.encode(message, "utf-8"));
-            //Log.i(channel, message);
         }
         catch(UnsupportedEncodingException ex){
 
