@@ -100,9 +100,6 @@ public class GmailSender {
 
             // Create a multipart message
             Multipart multipart = new MimeMultipart();
-            //BodyPart mainBody = new MimeBodyPart();
-            //mainBody.setContent(emailBody, "text/html");
-            //multipart.addBodyPart(mainBody);
             for(File file :fileList){
                 DataSource source = new FileDataSource(file);
                 BodyPart messageBodyPart = new MimeBodyPart();
