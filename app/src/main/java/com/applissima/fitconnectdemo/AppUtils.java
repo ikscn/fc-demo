@@ -27,17 +27,11 @@ import java.util.TimeZone;
 public class AppUtils {
 
     private static final String clsName = "AppUtils";
-
-    //public static String hubMacAddress;
-    //private static String responsedHub;
-    //public static boolean adminAccess = false;
-
-
+    
     public static void checkNetworks(WeakReference<Context> weakContext){
 
         checkWifiStatus(weakContext);
         checkInternetStatus();
-        //checkHubStatus();
 
     }
 
@@ -60,15 +54,11 @@ public class AppUtils {
 
                             if (wifiMgr.getConnectionInfo().getNetworkId() == -1) {
                                 StaticVariables.addWifiStatus(false);
-                                //StaticVariables.wifiOn = false; // Not connected to an access point
                             } else {
                                 StaticVariables.addWifiStatus(true);
-                                //StaticVariables.cntWifiOn ++;
-                                //StaticVariables.wifiOn = true; // Connected to an access point
                             }
                         } else {
                             StaticVariables.addWifiStatus(false);
-                            //StaticVariables.wifiOn = false; // Wi-Fi adapter is OFF
                         }
 
                     }
@@ -88,7 +78,6 @@ public class AppUtils {
         try {
 
             Runtime runtime = Runtime.getRuntime();
-            //ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
             ipProcess = runtime.exec("/system/bin/ping -c 1 google.com");
             int exitValue = ipProcess.waitFor();
             ipProcess.destroy();
@@ -190,7 +179,6 @@ public class AppUtils {
                 tenDaysAgo.set(Calendar.MINUTE, 0);
                 tenDaysAgo.set(Calendar.SECOND, 0);
                 tenDaysAgo.add(Calendar.DAY_OF_YEAR, -numOfDaysBack);
-                //long timeOut = Calendar.getInstance() - (daysBack * 24 * 60 * 60 * 1000);
                 for(File listFile : listFiles) {
                     Calendar lastModified = Calendar.getInstance();
                     lastModified.setTimeInMillis(listFile.lastModified());
@@ -198,8 +186,6 @@ public class AppUtils {
                         if(!listFile.delete()) {
                             Log.e("FileProc", "Unable to delete file: " + listFile);
                             LoggerService.insertLog(clsName, "Unable to delete file: " + listFile, null);
-                        } else {
-                            //Log.i("FileProc", "File successfully deleted.");
                         }
                     }
                 }
@@ -249,40 +235,6 @@ public class AppUtils {
                 .get(Calendar.DAY_OF_YEAR));
     }
 
-
-    /*public static void checkHubStatus(){
-
-        try {
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-                    new HubClient().run();
-
-                *//* GIve the Server some time for startup *//*
-                    try {
-                        Thread.sleep(4000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }).start();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-
-        //new Thread(new HubClient()).start();
-
-
-    }*/
-
-
-
     public static String getEncryptedString(APIRequestType type){
 
         String encryptedString = "";
@@ -313,9 +265,6 @@ public class AppUtils {
         return encryptedString;
 
     }
-
-
-
 
     public static String getDateString(Date date, String dateFormat){
 
@@ -463,97 +412,6 @@ public class AppUtils {
         return false;
     }
 
-    /*public static class HubClient implements Runnable {
-
-        final String SERVERIP = "255.255.255.255";
-        final int SERVERPORT = 48899;
-        final String message = "HF-A11ASSISTHREAD";
-        DatagramSocket socket;
-        String responsedHub = "";
-        String responsedHubIp = "";
-
-        @Override
-        public void run() {
-
-            try {
-
-                // Retrieve the ServerName
-                InetAddress serverAddr = InetAddress.getByName(SERVERIP);
-
-                Log.d("UDP", "C: Connecting...");
-                // Create new UDP-Socket
-                socket = new DatagramSocket();
-                socket.setReuseAddress(true);
-                socket.setSoTimeout(2000);
-
-                // Prepare some data to be sent. *//**//*
-                byte[] buf = message.getBytes();
-                byte[] receivingBuf = new byte[50];
-
-
-                // Create UDP-packet with
-                // data & destination(url+port) *//**//*
-                DatagramPacket sendingPacket = new DatagramPacket(buf, buf.length, serverAddr, SERVERPORT);
-                DatagramPacket receivingPacket = new DatagramPacket(receivingBuf, receivingBuf.length, serverAddr, SERVERPORT);
-                Log.d("UDP", "C: Sending: '" + new String(buf) + "'");
-
-                /*//* Send out the packet *//**//*
-                socket.send(sendingPacket);
-                Log.d("UDP", "C: Sent.");
-                Log.d("UDP", "C: Done.");
-
-                while (true) {
-
-                    socket.receive(receivingPacket);
-
-                *//*if(receivingPacket == null || receivingPacket.getLength() == 0){
-                    keepSearching = false;
-                } else {*//*
-                    String[] responseArray = null;
-                    String responseString = new String(receivingPacket.getData());
-                    if (!"".equalsIgnoreCase(responseString)) {
-                        responseArray = responseString.split(",");
-                    }
-                    // If a logical response received...
-                    if (responseArray != null && responseArray.length >= 2) {
-
-                        responsedHubIp = responseArray[0];
-                        responsedHub = responseArray[1];
-
-                        Log.d("UDP", "C: Received from Hub IP: "  + responsedHubIp
-                                        + ", Hub Mac Addr: "+ responsedHub);
-
-                        // Add hub mac id to Settings list
-                        if (Settings.hubList.size() == 0
-                                || !Settings.hubList.contains(responseArray[1])) {
-                            Settings.hubList.add(responseArray[1]);
-                        }
-                        if (Settings.hubMacAddress.equals(responseArray[1])) {
-
-                            StaticVariables.hubIpAddress = responseArray[0];
-
-                            StaticVariables.addHubStatus(true);
-                            //StaticVariables.cntHubOn ++;
-                            Log.i("UDP", "Main Hub Mac Address: " + responsedHub);
-                        }
-
-                    }
-
-                }
-                //}
-
-            } catch (Exception e) {
-                StaticVariables.addHubStatus(false);
-                //Log.e("UDP", "C: Error", e);
-            } finally {
-                socket.closeDialog();
-                Log.i("AppUtils", "AppUtils: HubClient Socket Closed.");
-            }
-
-        }
-
-    }*/
-
     public static String readableByteCount(long bytes, boolean si) {
         int unit = si ? 1000 : 1024;
         if (bytes < unit) return bytes + " B";
@@ -561,49 +419,6 @@ public class AppUtils {
         String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp-1) + (si ? "" : "i");
         return String.format(Locale.getDefault(), "%.1f %sB", bytes / Math.pow(unit, exp), pre);
     }
-
-    /*public static String getVolleyErrorMessage(VolleyError error){
-        String body = "";
-        //get response body and parse with appropriate encoding
-        if(error.networkResponse==null){
-            body = "Network response is null. It might be a network connection failure!";
-        }
-        else if(error.networkResponse.data!=null) {
-            //get status code here
-            String statusCode = String.valueOf(error.networkResponse.statusCode);
-            try {
-                body = statusCode + " : " + new String(error.networkResponse.data,"UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-        }
-        return body;
-    }*/
-
-    /*public static String getMemoryState(){
-
-        Runtime runtime = Runtime.getRuntime();
-        long maxMemory=runtime.maxMemory();
-        //Getting how much of the heap your app currently uses:
-
-        long usedMemory=runtime.totalMemory() - runtime.freeMemory();
-        //Getting how much of the heap your app can now use (available memory) :
-
-        long availableMemory=maxMemory-usedMemory;
-        //And, to format each of them nicely, you can use:
-
-        String maxMemoryStr = Formatter.formatShortFileSize(mContext, maxMemory);
-        String usedMemoryStr = Formatter.formatShortFileSize(mContext, usedMemory);
-        String availableMemoryStr = Formatter.formatShortFileSize(mContext, availableMemory);
-
-        String memoryState = "Max Memory: " + maxMemoryStr
-                + "\n" + "Used Memory: " + usedMemoryStr
-                + "\n" + "Available Memory: " + availableMemoryStr
-                + "\n";
-
-        return memoryState;
-
-    }*/
 
     public static String getMachineIP(WeakReference<Context> weakContext){
 
@@ -636,17 +451,5 @@ public class AppUtils {
         return getDateString(insertDate, AppDefaults.TIME_FORMAT_MINAGGID) + userName;
 
     }
-
-    /*public static void startCrashService(String stackTrace, String crashType){
-
-        Intent crashIntent = new Intent(mContext, CrashService.class);
-        crashIntent.putExtra("stackTrace", stackTrace);
-        crashIntent.putExtra("crashType", crashType);
-
-
-    }*/
-
-
-
 
 }
