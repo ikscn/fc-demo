@@ -40,36 +40,6 @@ public class FitWorkDataMinAgg extends RealmObject {
     private int totalDistance = 0;
     private int hrDataCount = 0;
 
-    /*public DataMinAggUpload toUploadData(){
-
-        String beltId = "";
-        FitPerson fitPerson = this.fitPerson;
-        if(fitPerson!=null){
-            beltId = fitPerson.getHrSensorId();
-        }
-
-        DataMinAggUpload minAggUpload = new DataMinAggUpload();
-        minAggUpload.setAvgSpeed(this.avgSpeed);
-        minAggUpload.setHrZone(this.avgZone);
-        minAggUpload.setAvgHr(this.avgHr);
-        minAggUpload.setHrDataCount(this.hrDataCount);
-        minAggUpload.setBeltId(beltId);
-        minAggUpload.setMaxHr(this.maxHr);
-        minAggUpload.setAvgPerf(this.avgPerf);
-        minAggUpload.setCadence(this.avgCadence);
-        minAggUpload.setDistance(this.totalDistance);
-        minAggUpload.setScDataCount(0);
-        minAggUpload.setPace(0);
-        minAggUpload.setCalBurned(this.totalCal);
-        minAggUpload.setAvgHrRSSI(0);
-        minAggUpload.setAvgScRSSI(0);
-        minAggUpload.setFctTimestamp(AppUtils.getUploadDateString(this.insertDate));
-        minAggUpload.setActivity(this.getFitWork().getActivityName());
-
-        return minAggUpload;
-
-    }*/
-
     public JSONObject toJSON(){
 
         JSONObject jsonObject = new JSONObject();
@@ -156,44 +126,6 @@ public class FitWorkDataMinAgg extends RealmObject {
 
         return jsonObject==null? "" :jsonObject.toString();
     }
-
-
-    /*public String toJSONStringOld(){
-
-        String beltId = "";
-        FitPerson fitPerson = this.fitPerson;
-        if(fitPerson!=null){
-            beltId = fitPerson.getHrSensorId();
-        }
-
-
-        String jsonString =
-                "{"
-                +"\"avgSpeed\":" + this.avgSpeed
-                + ",\"hrZone\":" + this.avgZone
-                + ",\"avgHr\":" + this.avgHr
-                + ",\"hrDataCount\":" + this.hrDataCount
-                + ",\"beltId\":\"" + beltId + "\""
-                + ",\"siteId\":" + Settings.siteId
-                + ",\"maxHr\":" + this.maxHr
-                + ",\"avgPerf\":" + this.avgPerf
-                + ",\"insertSourceId\":\"COLL" + String.valueOf(Settings.siteId) + "001\""
-                + ",\"cadence\":" + this.avgCadence
-                + ",\"insertSourceType\":\"FcCollector\""
-                + ",\"distance\":" + this.totalDistance
-                + ",\"scDataCount\":0"
-                + ",\"userEmail\":\"etezel@gmail.com\""
-                + ",\"pace\":0"
-                + ",\"calBurned\":" + this.totalCal
-                + ",\"avgHrRSSI\":0"
-                + ",\"avgScRSSI\":0"
-                + ",\"fctTimestamp\":\"" + AppUtils.getUploadDateString(this.insertDate) + "\""
-                + ",\"activity\":\"" + this.getFitWork().getActivityName() + "\""
-                + "}";
-
-        return jsonString;
-    }*/
-
 
     public String getMinAggId() {
         return minAggId;
