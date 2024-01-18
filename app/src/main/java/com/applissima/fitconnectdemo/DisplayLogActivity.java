@@ -61,7 +61,6 @@ public class DisplayLogActivity extends AppCompatActivity {
             public void run() {
 
                 try {
-                    //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
                     logTextView = (TextView) findViewById(R.id.logcatText);
                     logTextView.setMovementMethod(new ScrollingMovementMethod());
