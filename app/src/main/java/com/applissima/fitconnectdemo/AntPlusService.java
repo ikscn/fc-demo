@@ -440,7 +440,6 @@ public class AntPlusService extends Service {
         }
         catch(IllegalArgumentException e)
         {
-            // Not bound, that's what we want anyway
             e.printStackTrace();
         }
 
