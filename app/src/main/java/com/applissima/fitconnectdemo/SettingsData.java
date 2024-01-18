@@ -29,9 +29,6 @@ public class SettingsData extends RealmObject {
     private String clubEmail;
     private String clubPw;
 
-    //private String appVersion;
-    //private String hubMacAddress;
-
     public void setDefaultSettings(){
         this.simulationPersonCount = 0;
         this.checkProfileUpdates = 5;
@@ -53,8 +50,6 @@ public class SettingsData extends RealmObject {
         this.clubName = "";
         this.clubEmail = "";
         this.clubPw = "";
-        //this.appVersion = "";
-        //this.hubMacAddress = "";
     }
 
     public void updateDBFromSettings(){
@@ -78,8 +73,6 @@ public class SettingsData extends RealmObject {
         this.clubName = Settings.clubName;
         this.clubEmail = Settings.clubEmail;
         this.clubPw = Settings.clubPw;
-        //this.appVersion = Settings.appVersion;
-        //this.hubMacAddress = Settings.hubMacAddress;
     }
 
     public SettingsObj toObject(){
@@ -264,20 +257,4 @@ public class SettingsData extends RealmObject {
     public void setClubPw(String clubPw) {
         this.clubPw = clubPw;
     }
-
-    /*public String getAppVersion() {
-        return appVersion;
-    }
-
-    public void setAppVersion(String appVersion) {
-        this.appVersion = appVersion;
-    }*/
-
-    /*public String getHubMacAddress() {
-        return hubMacAddress;
-    }
-
-    public void setHubMacAddress(String hubMacAddress) {
-        this.hubMacAddress = hubMacAddress;
-    }*/
 }
