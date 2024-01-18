@@ -48,10 +48,8 @@ import io.realm.RealmConfiguration;
 public class SettingsActivity extends AppCompatActivity {
 
     private final String clsName = "SettingsActivity";
-    //private SettingsData appSettingsData;
     private SettingsObj settingsObject;
     private Button btn_siteId;
-    //private Button btn_locationId;
     private Button btn_simulationPersonCount;
     private Button btn_checkProfileUpdates; // minutes
     private Button btn_checkUnknownProfile; // minutes
@@ -74,7 +72,6 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView tv_currVersion;
     private TextView tv_clubName;
     private TextView tv_locationId;
-    //private Button btn_hubMacAddress;
 
 
     @Override
@@ -131,55 +128,6 @@ public class SettingsActivity extends AppCompatActivity {
         tv_locationId = (TextView) findViewById(R.id.set_locationId);
         tv_locationId.setText(String.valueOf(Settings.locationId));
 
-        /*btn_hubMacAddress = (Button) findViewById(R.id.set_hubMacAddress);
-        btn_hubMacAddress.setText(appSettingsData.getHubMacAddress());
-        btn_hubMacAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-
-                AppUtils.checkHubStatus();
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(SettingsActivity.this);
-                                LayoutInflater inflater = SettingsActivity.this.getLayoutInflater();
-                                View progressView = inflater.inflate(R.layout.progress_layout, null);
-                                TextView progressTextView = (TextView) progressView.findViewById(R.id.progressTextView);
-                                progressTextView.setText(getResources().getString(R.string.text_waiting_hub));
-                                dialogBuilder.setView(progressView);
-
-                                progressDialog = dialogBuilder.create();
-                                progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-                                progressDialog.show();
-                            }
-                        });
-
-                        try {
-                            Thread.sleep(3000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                progressDialog.dismiss();
-
-                                showPicker(view, 0, 0);
-                            }
-                        });
-
-                    }
-                }).start();
-            }
-        });*/
-
         btn_siteId = (Button) findViewById(R.id.set_siteId);
         btn_siteId.setText(String.valueOf(settingsObject.getSiteId()));
         btn_siteId.setOnClickListener(new View.OnClickListener() {
@@ -188,15 +136,6 @@ public class SettingsActivity extends AppCompatActivity {
                 showEditText(view);
             }
         });
-
-        /*btn_locationId = (Button) findViewById(R.id.set_locationId);
-        btn_locationId.setText(String.valueOf(settingsObject.getLocationId()));
-        btn_locationId.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showEditText(view);
-            }
-        });*/
 
         btn_simulationPersonCount = (Button) findViewById(R.id.set_simPersonCnt);
         btn_simulationPersonCount.setText(String.valueOf(settingsObject.getSimulationPersonCount()));
@@ -334,11 +273,6 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Update version
-                /*Map<String, String> versionMap = new HashMap<String, String>();
-                versionMap.put("versionNo", StaticVariables.availableVersion.getVersionNo());
-                versionMap.put("versionUrl", StaticVariables.availableVersion.getVersionUrl());*/
-
-                // Burada uygulamayı güncelle!!
                 UpdateVersionTask updateVersionService = new UpdateVersionTask();
                 updateVersionService.execute();
 
@@ -414,13 +348,6 @@ public class SettingsActivity extends AppCompatActivity {
                 valueSet[(i/step)-1] = String.valueOf(i);
             }
             picker.setDisplayedValues(valueSet);
-            /*picker.setFormatter(new NumberPicker.Formatter() {
-                @Override
-                public String format(int value) {
-                    int temp = value * step;
-                    return "" + temp;
-                }
-            });*/
             picker.setMinValue(0);
             picker.setMaxValue(maxVal/minVal-1);
             picker.setValue(Arrays.asList(valueSet).indexOf(button.getText().toString()));
@@ -505,10 +432,6 @@ public class SettingsActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
-
-
     }
 
     private void updateSettings(final String property){
@@ -571,12 +494,6 @@ public class SettingsActivity extends AppCompatActivity {
                         case ("set_siteId"):
                             appSettingsData.setSiteId(Integer.valueOf(btn_siteId.getText().toString()));
                             break;
-                        /*case ("set_locationId"):
-                            appSettingsData.setLocationId(Integer.valueOf(btn_locationId.getText().toString()));
-                            break;*/
-                        /*case ("set_hubMacAddress"):
-                            appSettingsData.setHubMacAddress(btn_hubMacAddress.getText().toString());
-                            break;*/
                     }
 
                     Settings.fromRealmDB(appSettingsData);
@@ -606,23 +523,23 @@ public class SettingsActivity extends AppCompatActivity {
 
         String jsonString = "[{\"avgSpeed\":0,\"hrZone\":2,\"avgHr\":115,\"hrDataCount\":83,\"beltId\":\"00024\"," +
                 "\"siteId\":123,\"maxHr\":180,\"avgPerf\":64,\"insertSourceId\":\"COLL123001\",\"cadence\":0," +
-                "\"insertSourceType\":\"FcCollector\",\"distance\":0,\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\"," +
+                "\"insertSourceType\":\"FcCollector\",\"distance\":0,\"scDataCount\":0,\"userEmail\":\"*****@gmail.com\"," +
                 "\"pace\":0,\"calBurned\":9.997394837476099,\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:22\"," +
                 "\"activity\":\"Kardiyo\"},{\"avgSpeed\":0,\"hrZone\":2,\"avgHr\":121,\"hrDataCount\":115,\"beltId\":\"00024\"," +
                 "\"siteId\":123,\"maxHr\":178,\"avgPerf\":64,\"insertSourceId\":\"COLL123001\",\"cadence\":0," +
-                "\"insertSourceType\":\"FcCollector\",\"distance\":0,\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\"," +
+                "\"insertSourceType\":\"FcCollector\",\"distance\":0,\"scDataCount\":0,\"userEmail\":\"*****@gmail.com\"," +
                 "\"pace\":0,\"calBurned\":10.05599904397705,\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:23\"," +
                 "\"activity\":\"Kardiyo\"},{\"avgSpeed\":0,\"hrZone\":2,\"avgHr\":119,\"hrDataCount\":102,\"beltId\":\"00024\"," +
                 "\"siteId\":123,\"maxHr\":180,\"avgPerf\":64,\"insertSourceId\":\"COLL123001\",\"cadence\":0,\"insertSourceType\":\"FcCollector\"," +
-                "\"distance\":0,\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\",\"pace\":0,\"calBurned\":10.45592734225622," +
+                "\"distance\":0,\"scDataCount\":0,\"userEmail\":\"*****@gmail.com\",\"pace\":0,\"calBurned\":10.45592734225622," +
                 "\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:24\",\"activity\":\"Kardiyo\"},{\"avgSpeed\":0," +
                 "\"hrZone\":3,\"avgHr\":124,\"hrDataCount\":300,\"beltId\":\"00024\",\"siteId\":123,\"maxHr\":180,\"avgPerf\":69," +
                 "\"insertSourceId\":\"COLL123001\",\"cadence\":0,\"insertSourceType\":\"FcCollector\",\"distance\":0," +
-                "\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\",\"pace\":0,\"calBurned\":11.49703632887189," +
+                "\"scDataCount\":0,\"userEmail\":\"*****@gmail.com\",\"pace\":0,\"calBurned\":11.49703632887189," +
                 "\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:25\",\"activity\":\"Kardiyo\"}]";
 
         RequestParams params = new RequestParams();
-        params.put("email", "etezel@gmail.com");
+        params.put("email", "*****@gmail.com");
         params.put("sessionid", encryptedString);
         params.put("activityData", jsonString);
 
@@ -631,7 +548,6 @@ public class SettingsActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // If the response is JSONObject instead of expected JSONArray
 
                 Log.i("UploadAsync", "UploadAsync Successful");
                 Log.i("UploadAsync", "UploadAsync Response ---> " + response);
@@ -678,9 +594,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        /*UploadJSONAsyncTask uploadJSONAsyncTask = new UploadJSONAsyncTask();
-        uploadJSONAsyncTask.execute();*/
-
     }
 
     private class UploadJSONAsyncTask extends AsyncTask<Void, Void, Void>{
@@ -695,23 +608,23 @@ public class SettingsActivity extends AppCompatActivity {
 
             String jsonString = "[{\"avgSpeed\":0,\"hrZone\":2,\"avgHr\":115,\"hrDataCount\":83,\"beltId\":\"00024\"," +
                     "\"siteId\":123,\"maxHr\":180,\"avgPerf\":64,\"insertSourceId\":\"COLL123001\",\"cadence\":0," +
-                    "\"insertSourceType\":\"FcCollector\",\"distance\":0,\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\"," +
+                    "\"insertSourceType\":\"FcCollector\",\"distance\":0,\"scDataCount\":0,\"userEmail\":\"*****@gmail.com\"," +
                     "\"pace\":0,\"calBurned\":9.997394837476099,\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:22\"," +
                     "\"activity\":\"Kardiyo\"},{\"avgSpeed\":0,\"hrZone\":2,\"avgHr\":121,\"hrDataCount\":115,\"beltId\":\"00024\"," +
                     "\"siteId\":123,\"maxHr\":178,\"avgPerf\":64,\"insertSourceId\":\"COLL123001\",\"cadence\":0," +
-                    "\"insertSourceType\":\"FcCollector\",\"distance\":0,\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\"," +
+                    "\"insertSourceType\":\"FcCollector\",\"distance\":0,\"scDataCount\":0,\"userEmail\":\"*****@gmail.com\"," +
                     "\"pace\":0,\"calBurned\":10.05599904397705,\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:23\"," +
                     "\"activity\":\"Kardiyo\"},{\"avgSpeed\":0,\"hrZone\":2,\"avgHr\":119,\"hrDataCount\":102,\"beltId\":\"00024\"," +
                     "\"siteId\":123,\"maxHr\":180,\"avgPerf\":64,\"insertSourceId\":\"COLL123001\",\"cadence\":0,\"insertSourceType\":\"FcCollector\"," +
-                    "\"distance\":0,\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\",\"pace\":0,\"calBurned\":10.45592734225622," +
+                    "\"distance\":0,\"scDataCount\":0,\"userEmail\":\"*****@gmail.com\",\"pace\":0,\"calBurned\":10.45592734225622," +
                     "\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:24\",\"activity\":\"Kardiyo\"},{\"avgSpeed\":0," +
                     "\"hrZone\":3,\"avgHr\":124,\"hrDataCount\":300,\"beltId\":\"00024\",\"siteId\":123,\"maxHr\":180,\"avgPerf\":69," +
                     "\"insertSourceId\":\"COLL123001\",\"cadence\":0,\"insertSourceType\":\"FcCollector\",\"distance\":0," +
-                    "\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\",\"pace\":0,\"calBurned\":11.49703632887189," +
+                    "\"scDataCount\":0,\"userEmail\":\"*****@gmail.com\",\"pace\":0,\"calBurned\":11.49703632887189," +
                     "\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:25\",\"activity\":\"Kardiyo\"}]";
 
             RequestParams params = new RequestParams();
-            params.put("email", "etezel@gmail.com");
+            params.put("email", "*****@gmail.com");
             params.put("sessionid", encryptedString);
             params.put("activityData", jsonString);
 
@@ -759,116 +672,6 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-    /*public void uploadTestJSON(View view){
-
-
-        String encryptedString = "";
-        String requestString = "";
-
-        SimpleDateFormat df = new SimpleDateFormat(AppDefaults.TIME_FORMAT_DEFAULT, Locale.getDefault());
-        df.setTimeZone(TimeZone.getTimeZone("UTC"));
-        TimeZone timeZone = TimeZone.getTimeZone("UTC");
-        Calendar calendar = Calendar.getInstance(timeZone);
-        Log.i("UTCTime", df.format(calendar.getTime()));
-
-        requestString = AppDefaults.SCRT_KEY + df.format(calendar.getTime()).substring(0,15) + AppDefaults.API_INSERTDATA_KEY + AppDefaults.API_PASS;
-
-        encryptedString = AppUtils.md5(requestString);
-        Log.i("Encrypted SessionId", encryptedString);
-
-        // Instantiate the RequestQueue.
-        //final RequestQueue queue = Volley.newRequestQueue(this.getApplicationContext());
-        String url = AppDefaults.API_INSERTDATA_URL;
-
-        String jsonString = "[{\"avgSpeed\":0,\"hrZone\":2,\"avgHr\":115,\"hrDataCount\":83,\"beltId\":\"00024\"," +
-                "\"siteId\":100,\"maxHr\":180,\"avgPerf\":64,\"insertSourceId\":\"COLL123001\",\"cadence\":0," +
-                "\"insertSourceType\":\"FcCollector\",\"distance\":0,\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\"," +
-                "\"pace\":0,\"calBurned\":9.997394837476099,\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:22\"," +
-                "\"activity\":\"Kardiyo\"},{\"avgSpeed\":0,\"hrZone\":2,\"avgHr\":121,\"hrDataCount\":115,\"beltId\":\"00024\"," +
-                "\"siteId\":100,\"maxHr\":178,\"avgPerf\":64,\"insertSourceId\":\"COLL123001\",\"cadence\":0," +
-                "\"insertSourceType\":\"FcCollector\",\"distance\":0,\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\"," +
-                "\"pace\":0,\"calBurned\":10.05599904397705,\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:23\"," +
-                "\"activity\":\"Kardiyo\"},{\"avgSpeed\":0,\"hrZone\":2,\"avgHr\":119,\"hrDataCount\":102,\"beltId\":\"00024\"," +
-                "\"siteId\":100,\"maxHr\":180,\"avgPerf\":64,\"insertSourceId\":\"COLL123001\",\"cadence\":0,\"insertSourceType\":\"FcCollector\"," +
-                "\"distance\":0,\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\",\"pace\":0,\"calBurned\":10.45592734225622," +
-                "\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:24\",\"activity\":\"Kardiyo\"},{\"avgSpeed\":0," +
-                "\"hrZone\":3,\"avgHr\":124,\"hrDataCount\":300,\"beltId\":\"00024\",\"siteId\":100,\"maxHr\":180,\"avgPerf\":69," +
-                "\"insertSourceId\":\"COLL123001\",\"cadence\":0,\"insertSourceType\":\"FcCollector\",\"distance\":0," +
-                "\"scDataCount\":0,\"userEmail\":\"etezel@gmail.com\",\"pace\":0,\"calBurned\":11.49703632887189," +
-                "\"avgHrRSSI\":0,\"avgScRSSI\":0,\"fctTimestamp\":\"2017.02.08 23:25\",\"activity\":\"Kardiyo\"}]";
-
-        Map<String, String> params = new HashMap<>();
-        params.put("email", "etezel@gmail.com");
-        params.put("sessionid", encryptedString);
-        params.put("activityData", jsonString);
-
-        *//*try {
-            JSONObject jsonObject = new JSONObject(jsonString);
-            APIJObjectRequest request = new APIJObjectRequest(Request.Method.POST, url, jsonObject, params, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Log.i("JSONResponse", response.toString());
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.i("JSONResponse Error ", error.getMessage());
-                }
-            });
-            queue.add(request);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*//*
-
-        *//*try {
-            JSONArray jsonArray = new JSONArray(jsonString);
-            APIJArrayRequest request = new APIJArrayRequest(Request.Method.POST, url, params, jsonArray, new Response.Listener<JSONArray>() {
-                @Override
-                public void onResponse(JSONArray response) {
-                    Log.i("JSONResponse", response.toString());
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.i("JSONResponse Error ", error.getMessage());
-                }
-            });
-            queue.add(request);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*//*
-
-
-        APIRequest request = new APIRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(final JSONObject response) {
-                // Display the first 500 characters of the response string.
-                Log.i("Response", response.toString());
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("Response Error", error.getMessage());
-            }
-        });
-
-        if(StaticVariables.isNetworkAvailable()) {
-            *//*request.setRetryPolicy(new DefaultRetryPolicy(1000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*//*
-            VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
-        } else {
-            Toast.makeText(this, "Network is not available!", Toast.LENGTH_LONG).show();
-        }
-
-
-    }*/
-
     public void testUdp(View view){
 
         Intent i = new Intent(this, LoggingUDPActivity.class);
@@ -906,7 +709,6 @@ public class SettingsActivity extends AppCompatActivity {
                 .Builder()
                 .deleteRealmIfMigrationNeeded()
                 .name(AppDefaults.REALMLOG_FILENAME)
-                //.directory(Environment.getExternalStorageDirectory())
                 .build();
 
         Realm logRealm = null;
@@ -1027,8 +829,6 @@ public class SettingsActivity extends AppCompatActivity {
         protected String doInBackground(Void... aVoid) {
 
             String folderName = "FitConnectApks";
-
-            //String versionNo = versionMap[0].get("versionNo");
             String urlStr = "";
             if(StaticVariables.availableVersion!=null
                     && !"".equals(StaticVariables.availableVersion.getVersionUrl())){
@@ -1061,7 +861,6 @@ public class SettingsActivity extends AppCompatActivity {
                 int count;
                 while ((count = input.read(data)) != -1) {
                     total += count;
-                    //publishProgress((int) (total * 100 / fileLength));
                     output.write(data, 0, count);
                 }
 
@@ -1090,7 +889,6 @@ public class SettingsActivity extends AppCompatActivity {
                 i.setDataAndType(Uri.fromFile(new File(path)), "application/vnd.android.package-archive");
                 Log.d("Lofting", "About to install new .apk");
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             } else {
                 Toast.makeText(SettingsActivity.this, getString(R.string.text_error_update), Toast.LENGTH_LONG).show();
