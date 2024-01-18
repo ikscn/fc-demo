@@ -26,31 +26,12 @@ public class FitConnectApplication extends Application {
     public static FitConnectApplication instance;
     private SharedPreferences prefs;
 
-    /*private RefWatcher refWatcher;
-    public static RefWatcher getRefWatcher(Context context) {
-        FitConnectApplication application = (FitConnectApplication) context.getApplicationContext();
-        return application.refWatcher;
-    }*/
-
     @Override
     public void onCreate() {
         super.onCreate();
 
-        /*if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        LeakCanary.install(this);*/
-
         instance = this;
-
         prefs = getSharedPreferences(AppDefaults.PREFS_NAME, MODE_PRIVATE);
-
-        /*Thread.setDefaultUncaughtExceptionHandler(new CustomExceptionHandler(instance,
-                Environment.getExternalStorageDirectory().getPath()));*/
-
-        //startAnrListener();
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
@@ -61,7 +42,6 @@ public class FitConnectApplication extends Application {
                 .Builder()
                 .deleteRealmIfMigrationNeeded()
                 .name(AppDefaults.REALM_FILENAME)
-                //.directory(Environment.getExternalStorageDirectory())
                 .build();
 
         Realm.setDefaultConfiguration(config);
@@ -75,16 +55,11 @@ public class FitConnectApplication extends Application {
                 .setANRListener(new ANRWatchDog.ANRListener() {
                     @Override
                     public void onAppNotResponding(ANRError error) {
-                        // Handle the error. For example, log it to HockeyApp:
                         Writer writer = new StringWriter();
                         error.printStackTrace(new PrintWriter(writer));
                         String errorStr = writer.toString();
 
                         error.printStackTrace();
-                        //LoggerService.insertLog("ANRWatchDog", error.getMessage(), errorStr);
-                /*new RemoteLogCat().log("FCSite_" + Settings.locationId + ": " + "ANRWatchDog",
-                        errorStr,
-                        AppDefaults.REMOTE_LOGCAT_APIKEY);*/
 
                         String crashFileName = AppUtils.writeToFile(errorStr, AppDefaults.CRASH_ANR);
 
