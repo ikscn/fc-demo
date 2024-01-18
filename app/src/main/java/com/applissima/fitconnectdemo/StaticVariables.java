@@ -15,7 +15,6 @@ import java.util.Map;
 
 public class StaticVariables {
 
-    //public static FbVersion availableVersion;
     public static FsVersion availableVersion;
     public static int gridSize;
     public static List<String> waitingList;
@@ -33,10 +32,6 @@ public class StaticVariables {
     public static int[] hubStatus;
     public static float appHeight;
 
-    //public static List<String> processList;
-    //public static boolean updateUIInProcess;
-    //public static Map<String, List<RawData>> dataMap;
-
     public static void init(WeakReference<Context> weakContext){
         machineIP = AppUtils.getMachineIP(weakContext);
         waitingList = new ArrayList<String>();
@@ -46,7 +41,6 @@ public class StaticVariables {
         machineIPOnHub = "";
         appHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
         initNetworkCounts();
-
         initNetworkStatus();
     }
 
@@ -102,7 +96,6 @@ public class StaticVariables {
         int countOff = networkStatus.get(prop)[1];
         int totalCount = countOn + countOff;
         int percentageOn = totalCount == 0? 0 :Math.round((100 * countOn) / totalCount);
-        //int percentageOff = 100 - percentageOn;
         return String.valueOf(percentageOn);
 
     }
@@ -110,10 +103,6 @@ public class StaticVariables {
     public static boolean isNetworkAvailable(){
         return (cntWifiOn>0 && cntInternetOn>0);
     }
-
-    /*public static List<String> getCurUDPList(){
-        return (new ArrayList<>(dataMap.keySet()));
-    }*/
 
     public static boolean isPersonInWaitingList(String hrSensorId){
         return waitingList.contains(hrSensorId);
@@ -125,38 +114,4 @@ public class StaticVariables {
             Log.i("WaitingList", "Belt " + hrSensorId + " is added to waitingList");
         }
     }
-
-    /*public static boolean isPersonInProcess(String hrSensorId){
-        return processList.contains(hrSensorId);
-    }
-
-    public static void addPersonToProcess(String hrSensorId){
-        if(!isPersonInProcess(hrSensorId)){
-            processList.add(hrSensorId);
-        }
-        //Log.i("PersonProcess", "Person added to ProcessList! BeltId: " + hrSensorId);
-    }
-
-    public static void removePersonFromProcess(String hrSensorId){
-        if(isPersonInProcess(hrSensorId)){
-            processList.remove(hrSensorId);
-        }
-        //Log.i("PersonProcess", "Person removed from ProcessList! BeltId: " + hrSensorId);
-    }*/
-
-    /*public static RawData getLastRawData(String hrSensorId){
-
-        RawData rawData = null;
-        if(dataMap.containsKey(hrSensorId)){
-
-            try {
-                List<RawData> rawDataList = dataMap.get(hrSensorId);
-                rawData = rawDataList.get(rawDataList.size()-1);
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-
-        }
-        return rawData;
-    }*/
 }
