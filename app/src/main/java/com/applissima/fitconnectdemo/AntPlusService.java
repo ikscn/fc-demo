@@ -59,11 +59,6 @@ public class AntPlusService extends Service {
     //CADENCE CALCULATION
     static final public int  CADENCE_COEFFICIENT = (BSC_EVT_TIME_FACTOR * BSC_RPM_TIME_FACTOR);
 
-    // Moved to AppDefaults
-    /*static final public String DATA_MSG = "info.hmm.antplusreceiver.antplusservice.DATA_MSG";
-    static final public String DATA_HR = "info.hmm.antplusreceiver.antplusservice.DATA_HR";
-    static final public String DATA_SC = "info.hmm.antplusreceiver.antplusservice.DATA_SC";*/
-
     private AntService antService = null;
     private AntChannelProvider antChannelProvider = null;
 
@@ -78,10 +73,6 @@ public class AntPlusService extends Service {
 
     HashMap<Integer, CalculationItem> mapSpeed = new HashMap<>();
     HashMap<Integer, CalculationItem> mapCadence = new HashMap<>();
-
-    //private DatabaseService dbService;
-    //private boolean mBoundDbService;
-    //private Messenger messageHandler;
 
     //Handle Channel Events and Messages
     private IAntChannelEventHandler antChannelEventHandler = new IAntChannelEventHandler() {
@@ -122,9 +113,6 @@ public class AntPlusService extends Service {
                                 int rssi = message.getExtendedData().getRssi().getRssiValue();
                                 int devId = message.getExtendedData().getChannelId().getDeviceNumber();
 
-                                // FIXME Bu özellik için mesafe testi yapılmalı
-                                //if(hr!=0 && rssi <= Settings.distSensibility) {
-
                                     final RawData rawData = new RawData();
                                     rawData.setDeviceType(message.getExtendedData().getChannelId().getDeviceType());
                                     rawData.setDeviceNo(String.format(Locale.getDefault(), "%05d", devId));
@@ -132,19 +120,6 @@ public class AntPlusService extends Service {
                                     rawData.setRssi(rssi);
 
                                     sendData(rawData);
-
-                                    /*if(dbService!=null) {
-                                        dbService.processRawData(rawData, false);
-                                    }*/
-
-                                //}
-
-                        /*Toast.makeText(AntPlusService.this, "New Data: DevId: " + devId
-                                + " Hr: " + hr, Toast.LENGTH_LONG).show();*/
-
-                                //SensorListItem item = new SensorListItem(devId, ""+devId, ""+hr, "", ""+rssi, false);
-
-                                //sendDataHr(item);
                             }
                         }
                         //Speed / Cadence
@@ -272,13 +247,6 @@ public class AntPlusService extends Service {
     private ServiceConnection antRadioServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, final IBinder service) {
-            // Must pass in the received IBinder object to correctly construct an AntService object
-
-            //Toast.makeText(AntPlusService.this, "AntPlusService Connected!", Toast.LENGTH_LONG).show();
-
-            /*new Thread(new Runnable() {
-                @Override
-                public void run() {*/
 
                     antService = new AntService(service);
 
@@ -370,10 +338,6 @@ public class AntPlusService extends Service {
                         LoggerService.insertLog(clsName, e.getMessage(), e.getStackTrace()[0].getClassName()
                                 + ":" + e.getStackTrace()[0].getLineNumber());
                     }
-
-            /*    }
-            }).start();*/
-
 
         }
 
@@ -481,21 +445,6 @@ public class AntPlusService extends Service {
         }
 
         antRadioServiceBound = false;
-
-        /*if(antRadioServiceBound)
-        {
-            try
-            {
-                unbindService(antRadioServiceConnection);
-            }
-            catch(IllegalArgumentException e)
-            {
-                // Not bound, that's what we want anyway
-                e.printStackTrace();
-            }
-
-            antRadioServiceBound = false;
-        }*/
     }
 
     public AntPlusService() {
@@ -503,9 +452,6 @@ public class AntPlusService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-
-        //messageHandler = (Messenger) intent.getExtras().get("MESSENGER");
-
 
         return binder;
     }
@@ -533,45 +479,16 @@ public class AntPlusService extends Service {
             }
         } catch (RemoteException e) {
             e.printStackTrace();
-            //Toast.makeText(AntPlusService.this, "Error: " + e.getStackTrace()[0].toString(), Toast.LENGTH_LONG).show();
         } catch (AntCommandFailedException e) {
             e.printStackTrace();
             LoggerService.insertLog(clsName, e.getMessage(), e.getStackTrace()[0].getClassName()
                     + ":" + e.getStackTrace()[0].getLineNumber());
         }
 
-
         antChannelProvider = null;
-
-        /*try {
-            if(mBoundDbService) {
-                unbindService(mDbConnection);
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-            LoggerService.insertLog(clsName, e.getMessage(), e.getStackTrace()[0].getClassName()
-                    + ":" + e.getStackTrace()[0].getLineNumber());
-        }*/
 
         super.onDestroy();
     }
-
-    /*private ServiceConnection mDbConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
-            DatabaseService.DatabaseServiceBinder binder = (DatabaseService.DatabaseServiceBinder) service;
-            dbService = binder.getService();
-            mBoundDbService = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBoundDbService = false;
-        }
-    };*/
 
     public void sendData(RawData rawData){
         Intent intent = new Intent(AppDefaults.DATA_HR);
