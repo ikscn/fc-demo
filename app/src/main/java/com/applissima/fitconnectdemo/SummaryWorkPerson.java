@@ -8,8 +8,6 @@ import android.graphics.Bitmap;
 
 public class SummaryWorkPerson {
 
-    //private Bitmap mImageBitmap = null;
-    //private String hrSensorId = "";
     private String mUserName = "";
     private String mNickname = "";
     private String mDuration = "";
@@ -30,14 +28,6 @@ public class SummaryWorkPerson {
         this.mUserName = mUserName;
     }
 
-    /*public String getHrSensorId() {
-        return hrSensorId;
-    }
-
-    public void setHrSensorId(String hrSensorId) {
-        this.hrSensorId = hrSensorId;
-    }*/
-
     public String getmImageUrl() {
         return mImageUrl;
     }
@@ -53,14 +43,6 @@ public class SummaryWorkPerson {
     public void setmGender(int mGender) {
         this.mGender = mGender;
     }
-
-    /*public Bitmap getmImageBitmap() {
-        return mImageBitmap;
-    }
-
-    public void setmImageBitmap(Bitmap mImageBitmap) {
-        this.mImageBitmap = mImageBitmap;
-    }*/
 
     public String getmNickname() {
         return mNickname;
