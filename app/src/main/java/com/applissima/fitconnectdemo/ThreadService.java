@@ -51,14 +51,7 @@ public class ThreadService extends Service {
     private boolean mBoundDbService;
 
     private static int countForCheckNetwork;
-    //private int countForLogNetwork;
-
-    //private List<int[]> uploadedDataIndices;
-    //private int uploadPartsResponseCount;
     private boolean uploadInProgress = false;
-
-    /*public static final MediaType JSON
-            = MediaType.parse("application/json; charset=utf-8");*/
 
     @Nullable
     @Override
@@ -69,55 +62,34 @@ public class ThreadService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        //Thread.setDefaultUncaughtExceptionHandler(new CustomExceptionHandler("/mnt/sdcard/"));
-
         countForCheckNetwork = 0;
-        //countForLogNetwork = 0;
 
         messageHandler = (Messenger) intent.getExtras().get("MESSENGER");
 
         Intent dbIntent = new Intent(this, DatabaseService.class);
         bindService(dbIntent, mDbConnection, Context.BIND_AUTO_CREATE);
 
-        //Toast.makeText(this, "ThreadService bounded to DBService", Toast.LENGTH_LONG).show();
         Log.i("ThreadService", "ThreadService bounded to DBService");
-
-        //Toast.makeText(this, "ThreadService Started", Toast.LENGTH_LONG).show();
         Log.i("ThreadService", "ThreadService Started");
-
 
         mHandlerThread = new HandlerThread("HandlerThread");
         mHandlerThread.start();
         mHandler = new Handler(mHandlerThread.getLooper());
-        //mHandler = new Handler();
-
         mHandler.postDelayed(runTimerClock, 2 * 1000);
-
         mHandler.postDelayed(runUI, 3 * 1000);
         mHandler.postDelayed(runCheckNetworks, 5 * 1000);
         mHandler.postDelayed(runUpdateNetworkSigns, 6 * 1000);
         mHandler.postDelayed(runProfileUpdates, Settings.checkProfileUpdates * 60 * 1000);
-
         mHandler.postDelayed(runLogStatus, AppUtils.getNextQuarterDiff());
-
-        //mHandler.postDelayed(runRestart, AppUtils.getRestartTimeDiff());
-        //mHandler.postDelayed(runLogStatus, 60 * 1000);
-
         mHandler.postDelayed(runUploadLogs, Settings.uploadLogs * 60 * 1000);
-        //mHandler.postDelayed(runUploadLogs, 60 * 1000);
-
         mHandler.postDelayed(runUploadMinAgg, Settings.uploadMinAgg * 60 * 1000);
         mHandler.postDelayed(runWorkSummary, Settings.workSumPeriod * 60 * 1000 + 5000);
-
         mHandler.postDelayed(runRefreshWaitingList, Settings.checkUnknownProfile * 60 * 1000);
         mHandler.postDelayed(runGenDataSimUsers, 2000);
         mHandler.postDelayed(runMinute, 60 * 1000);
         mHandler.postDelayed(runClearData, 20 * 1000);
-
         mHandler.postDelayed(runEndOfDay, AppUtils.getEndOfDayTimeDiff());
-
         mHandler.postDelayed(runHandleTempBelts, 10 * 1000);
-
 
         return START_NOT_STICKY;
     }
@@ -149,26 +121,6 @@ public class ThreadService extends Service {
 
                         }
                     }).start();
-
-                    /*new AsyncTask<Void, Void, Void>(){
-
-                        @Override
-                        protected Void doInBackground(Void... params) {
-
-                            Message msg = new Message();
-                            msg.what = AppDefaults.EVENT_CARDS;
-                            msg.obj = new EventCards(dbService.getCurrentCardList());
-                            try {
-                                messageHandler.send(msg);
-                            } catch (RemoteException e) {
-                                LoggerService.insertLog(clsName, e.getMessage(), e.getStackTrace()[0].getClassName()
-                                        + ":" + e.getStackTrace()[0].getLineNumber());
-                                e.printStackTrace();
-                            }
-
-                            return null;
-                        }
-                    }.execute();*/
 
                 } catch (Exception e) {
                     LoggerService.insertLog(clsName, e.getMessage(), e.getStackTrace()[0].getClassName()
@@ -204,7 +156,6 @@ public class ThreadService extends Service {
             }
 
             mHandler.postDelayed(runProfileUpdates, Settings.checkProfileUpdates * 60 * 1000);
-            //mHandler.postDelayed(runProfileUpdates, 10 * 1000);
 
         }
     };
@@ -218,10 +169,8 @@ public class ThreadService extends Service {
             if(AppUtils.isInternetConnected()) {
 
                 try {
-                    //if(AppUtils.networkAvailable()) {
                     UploadLogsTask uploadLogsTask = new UploadLogsTask();
                     uploadLogsTask.execute();
-                    //}
                 } catch (Exception e) {
                     LoggerService.insertLog(clsName, e.getMessage(), e.getStackTrace()[0].getClassName()
                             + ":" + e.getStackTrace()[0].getLineNumber());
@@ -229,8 +178,6 @@ public class ThreadService extends Service {
                 }
 
             }
-
-            //mHandler.postDelayed(runUploadLogs, 80 * 1000);
             mHandler.postDelayed(runUploadLogs, Settings.uploadLogs * 60 * 1000);
 
         }
@@ -253,7 +200,6 @@ public class ThreadService extends Service {
                             + ":" + e.getStackTrace()[0].getLineNumber());
                     e.printStackTrace();
                 }
-
             }
 
             mHandler.postDelayed(runUploadMinAgg, Settings.uploadMinAgg * 60 * 1000);
@@ -292,7 +238,6 @@ public class ThreadService extends Service {
             }
 
             mHandler.postDelayed(runWorkSummary, Settings.workSumPeriod * 60 * 1000);
-            //mHandler.postDelayed(runWorkSummary, 30 * 1000);
 
         }
     };
@@ -438,10 +383,6 @@ public class ThreadService extends Service {
         public void run() {
 
             try {
-
-                // Clear custom data
-                //dbService.clearCustomData();
-
                 checkCrashes();
 
                 // Replicate Realm to SDCard from rootFile
@@ -557,46 +498,16 @@ public class ThreadService extends Service {
                 e.printStackTrace();
             }
 
-            // TODO change
             mHandler.postDelayed(runHandleTempBelts, Settings.checkTempBelts * 30 * 1000);
-            //mHandler.postDelayed(runHandleTempBelts, 15 * 60 * 1000);
 
         }
     };
-
-
-    //Runnable 14
-    /*private Runnable runRestart = new Runnable() {
-        @Override
-        public void run() {
-
-            try {
-
-                Message msg = new Message();
-                msg.what = AppDefaults.EVENT_RESTART;
-                messageHandler.send(msg);
-
-            } catch (Exception e) {
-                LoggerService.insertLog(clsName, e.getMessage(), e.getStackTrace()[0].getClassName()
-                        + ":" + e.getStackTrace()[0].getLineNumber());
-                e.printStackTrace();
-            }
-
-            mHandler.postDelayed(runRestart, 60 * 1000);
-
-        }
-    };*/
-
-
-
-
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
         mHandler.removeCallbacks(runTimerClock);
-        //mHandler.removeCallbacks(runRestart);
         mHandler.removeCallbacks(runUI);
         mHandler.removeCallbacks(runCheckNetworks);
         mHandler.removeCallbacks(runUpdateNetworkSigns);
@@ -612,12 +523,9 @@ public class ThreadService extends Service {
         mHandler.removeCallbacks(runEndOfDay);
         mHandler.removeCallbacks(runHandleTempBelts);
 
-        //interruptThreads();
-
         unbindService(mDbConnection);
 
         Log.i("ThreadService", "ThreadService Destroyed");
-        //Toast.makeText(this, "ThreadService Destroyed", Toast.LENGTH_SHORT).show();
     }
 
     private ServiceConnection mDbConnection = new ServiceConnection() {
@@ -637,210 +545,14 @@ public class ThreadService extends Service {
         }
     };
 
-
-    /*public void startMainThread(){
-
-        mainThread = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-
-                    // Initial wait
-                    //Thread.sleep(ThreadController.tInitialDelay * 1000);
-
-                    int timer = 0;
-                    boolean refreshThread = false;
-
-                    while (!isInterrupted()) {
-                        Thread.sleep(1000);
-
-                        // Check Networks
-                        if(timer > 0 && timer%ThreadController.tCheckNetworks==0){
-                            CheckNetworksTask networksTask = new CheckNetworksTask();
-                            networksTask.execute();
-                        }
-
-                        // Check Profile Updates
-                        if(timer > 0 && timer%ThreadController.tCheckProfileUpdates()==0){
-
-                            if(AppUtils.networkAvailable()) {
-                                dbService.updatePersonInfo();
-                            }
-
-                        }
-
-                        // Upload Logs
-                        if(timer > 0 && timer%ThreadController.tUploadLogs==0){
-
-                            if(AppUtils.networkAvailable()) {
-                                UploadLogsTask uploadLogsTask = new UploadLogsTask();
-                                uploadLogsTask.execute();
-                            }
-
-                        }
-
-                        // Log Status Message
-                        if(timer > 0 && timer%ThreadController.tLogStatus==0){
-                            LoggerService.insertLogStatusMessage();
-                        }
-
-                        // Upload MinAgg Data
-                        if(timer > 0 && timer%ThreadController.tMinAggUpload==0){
-
-                            if(AppUtils.networkAvailable()) {
-                                //DatabaseService.uploadMinDataAgg();
-                                UploadDataMinAggTask uploadMinAggTask = new UploadDataMinAggTask();
-                                uploadMinAggTask.execute();
-                            } else {
-                                LoggerService.insertLog(clsName, "ERROR: DB-SendDataToServer: Not connected to internet", null);
-                            }
-                        }
-                        *//*if(timer > 0 && timer%ThreadController.tDeleteExpiredMinAgg==0){
-                            DatabaseService.deleteExpiredData();
-                        }*//*
-
-                        // Show & Hide Work Summary
-                        if(timer > 0 && timer%ThreadController.tWorkSummary()==0){
-
-                            final String personToDisplayBeltId = dbService.nextPersonToDisplay();
-
-                            if(!"".equals(personToDisplayBeltId)) {
-
-                                showWorkSummary(personToDisplayBeltId);
-
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        try {
-
-                                            Thread.sleep(Settings.workSumDuration * 1000);
-                                            hideWorkSummary();
-
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }).start();
-                            }
-                        }
-                        *//*if(timer > (5 * Settings.simulationPersonCount)
-                                && timer%ThreadController.tCheckBelts==0){
-
-                            DatabaseService.checkBelts();
-
-                        }*//*
-
-                        // Compact Realms
-                        if(timer > 0 && timer%600==0){
-                            dbService.compactRealms();
-                        }
-
-                        timer++;
-                        if(timer==20000){
-                            this.interrupt();
-                        }
-
-                    }
-
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        mainThread.start();
-
-    }
-
-    public void startUIThread(){
-
-        uiThread = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-
-                    // Initial wait
-                    Thread.sleep(3 * 1000);
-
-                    // Update UI every second
-                    while (!isInterrupted()) {
-                        Thread.sleep(1000);
-
-                        EventBus.getDefault().post(new EventCards(dbService.getCurrentCardList()));
-
-                    }
-
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        uiThread.start();
-
-    }
-
-    private void startLogMemoryThread(){
-
-
-        logMemoryThread = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-
-                    while (!isInterrupted()) {
-                        Thread.sleep(20 * 60 * 1000);
-                        //Thread.sleep(1 * 60 * 1000);
-                        logMemoryState();
-
-                    }
-
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        logMemoryThread.start();
-
-    }*/
-
-    /*private void logMemoryState(){
-
-        Log.i("MEMORY STATE", AppUtils.getMemoryState());
-        LoggerService.insertLog(clsName, "Memory State", AppUtils.getMemoryState());
-
-    }*/
-
-
     private static class UpdateNetworkSigns extends AsyncTask<Void, Void, Void> {
 
         boolean isWifiOn = false;
         boolean isInternetOn = false;
-        //boolean isHubOn = false;
-        //boolean saveLog = false;
         boolean[] networkStatus = new boolean[3];
 
         @Override
         protected void onPreExecute() {
-
-            /*countForLogNetwork++;
-            // Change signs: every 1 minute ---> Log: every 30 minutes
-            if(countForLogNetwork == 30){
-                saveLog = true;
-                countForLogNetwork = 0;
-            } else {
-                saveLog = false;
-            }*/
 
             super.onPreExecute();
         }
@@ -852,50 +564,19 @@ public class ThreadService extends Service {
 
                 if(StaticVariables.cntWifiOn > 0){
                     Log.i("Wifi Check", "Wifi is connected!!!");
-                    /*if(saveLog){
-                        LoggerService.insertLog(clsName, "WiFi is connected.", null);
-                    }*/
                     isWifiOn = true;
-
-
-
                     if(StaticVariables.cntInternetOn > 0){
-                        /*if(saveLog){
-                            LoggerService.insertLog(clsName, "Internet is available.", null);
-                        }*/
                         Log.i("Internet Check", "Internet is available!!!");
                         isInternetOn = true;
                     } else {
-                        /*if(saveLog){
-                            LoggerService.insertLog(clsName, "Internet is not available.", null);
-                        }*/
                         Log.i("Internet Check", "Internet is not available!!!");
                         isInternetOn = false;
                     }
 
-
                 } else {
-                    /*if(saveLog){
-                        LoggerService.insertLog(clsName, "Wifi is not connected.", null);
-                    }*/
                     Log.i("Wifi Check", "Wifi is not connected.");
                     isWifiOn = false;
                 }
-
-                // Checking Hub Connection
-                /*if(StaticVariables.cntHubOn > 0){
-                    *//*if(saveLog){
-                        LoggerService.insertLog(clsName, "Hub is reachable with macAddress: " + Settings.hubMacAddress, null);
-                    }*//*
-                    Log.i("Hub Check", "Hub is reachable with macAddress: " + Settings.hubMacAddress);
-                    isHubOn = true;
-                } else {
-                    *//*if(saveLog){
-                        LoggerService.insertLog(clsName, "Hub is not reachable.", null);
-                    }*//*
-                    Log.i("Hub Check", "Hub is not reachable.");
-                    isHubOn = false;
-                }*/
 
             } catch (Exception e){
                 e.printStackTrace();
@@ -910,7 +591,6 @@ public class ThreadService extends Service {
 
             networkStatus[0] = isWifiOn;
             networkStatus[1] = isInternetOn;
-            //networkStatus[2] = isHubOn;
 
             Message msg = new Message();
             msg.what = AppDefaults.EVENT_NETWORKS;
@@ -921,238 +601,12 @@ public class ThreadService extends Service {
                 e.printStackTrace();
             }
 
-            //EventBus.getDefault().post(new EventNetworks(networkStatus));
-
-            /*if(isHubOn){
-                EventBus.getDefault().post(new EventCheckIpChange(true));
-            }*/
-
             // Reset counts
             StaticVariables.initNetworkCounts();
 
             super.onPostExecute(aVoid);
         }
     }
-
-    /*public class UploadLogsTaskOld extends AsyncTask<Void, Void, Void> {
-
-        //RequestQueue queue;
-
-        // Uploads aggregated data to the server
-
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //queue = Volley.newRequestQueue(getApplicationContext());
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-
-            String jsonString = dbService.getLogDataToUpload();
-            if(jsonString==null || "".equalsIgnoreCase(jsonString)){
-                return null;
-            }
-
-            Log.i("UPLOADING LOG", "UPLOADING LOG JSON: " + jsonString);
-
-            String encryptedString = AppUtils.getEncryptedString(APIRequestType.UPLOAD_LOG);
-
-            // Instantiate the RequestQueue.
-            String url = AppDefaults.API_INSERTLOGDATA_URL;
-
-            Map<String, String> params = new HashMap<>();
-            params.put("email", "etezel@gmail.com");
-            params.put("sessionid", encryptedString);
-            params.put("logData", jsonString);
-
-            APIRequest request = new APIRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(final JSONObject response) {
-                    // Display the first 500 characters of the response string.
-                    try {
-
-                        if (response.getJSONObject("status").getBoolean("successful")) {
-
-                            dbService.saveLogUpdates();
-
-                        } else {
-                            Log.i("UPLOAD LOG Response", "UPLOAD Response Failed" + response.toString());
-                        }
-
-                    } catch (JSONException e) {
-                        LoggerService.insertLog(clsName, e.getMessage(), e.getStackTrace()[0].getClassName()
-                                + ":" + e.getStackTrace()[0].getLineNumber());
-                        e.printStackTrace();
-                    }
-
-                    //queue.stop();
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    if (error.getMessage() != null) {
-                        Log.i("UPLOAD Response Error", error.getMessage());
-                    } else if (error.getLocalizedMessage() != null) {
-                        Log.i("UPLOAD Response Error", error.getLocalizedMessage());
-                    } else {
-                        Log.i("UPLOAD Response Error", "Volley API UPLOAD Response Error");
-                    }
-                    LoggerService.insertLog(clsName, "Volley API UPLOAD Response Error", "Volley API UPLOAD Response Error");
-
-                    //queue.stop();
-                }
-            });
-
-            //request.setShouldCache(false);
-
-            *//*if(AppUtils.networkAvailable()) {
-                queue.add(request);
-            }*//*
-
-            *//*request.setRetryPolicy(new DefaultRetryPolicy(1000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*//*
-
-            VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
-
-            return null;
-        }
-    }*/
-
-    /*private static class UploadLogsTask extends AsyncTask<Void, Void, Void>{
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-            final OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(20, TimeUnit.SECONDS)
-                    .writeTimeout(120, TimeUnit.SECONDS)
-                    .readTimeout(120, TimeUnit.SECONDS)
-                    .build();
-
-            final JSONArray jsonArray = new JSONArray();
-            final String url = AppDefaults.API_INSERTLOGDATA_URL;
-
-            final RealmConfiguration logConfig = new RealmConfiguration
-                    .Builder()
-                    .deleteRealmIfMigrationNeeded()
-                    .name(AppDefaults.REALMLOG_FILENAME)
-                    //.directory(Environment.getExternalStorageDirectory())
-                    .build();
-
-            Realm logRealm = Realm.getInstance(logConfig);
-
-            try {
-
-                logRealm.executeTransactionAsync(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-
-                        RealmResults<LogData> logResults =
-                                realm.where(LogData.class)
-                                        .equalTo("uploadSuccessful", false)
-                                        .findAllSorted("insertDate");
-
-                        if (logResults != null && logResults.size() > 0) {
-
-                            Log.i("Upload Logs", "UPLOAD LOGS Total Count: " + logResults.size());
-                            Log.i("Upload Logs", "Upload Logs trial started...");
-                            LoggerService.insertLog(clsName, "Upload Logs trial started...",
-                                    "UPLOAD LOGS Total Count: " + logResults.size());
-
-                            for(LogData logData :logResults){
-
-                                jsonArray.put(logData.toJSON());
-
-                                logData.setUploadTryCount(logData.getUploadTryCount() + 1);
-                                logData.setUploadTryDate(Calendar.getInstance().getTime());
-                            }
-
-                            String jsonStr = String.valueOf(jsonArray);
-
-                            String encryptedString = AppUtils.getEncryptedString(APIRequestType.UPLOAD_LOG);
-
-                            RequestBody formBody = new MultipartBody.Builder()
-                                    .setType(MultipartBody.FORM)
-                                    .addFormDataPart("email", "etezel@gmail.com")
-                                    .addFormDataPart("sessionid", encryptedString)
-                                    .addFormDataPart("logData", jsonStr)
-                                    .build();
-
-                            okhttp3.Request okHttprequest = new okhttp3.Request.Builder()
-                                    .url(url)
-                                    .post(formBody)
-                                    .build();
-
-                            client.newCall(okHttprequest).enqueue(new okhttp3.Callback() {
-                                @Override
-                                public void onFailure(Call call, IOException e) {
-
-                                    String errorStr = "";
-                                    if(e.getMessage()!=null){
-                                        errorStr = e.getMessage();
-                                    } else if(e.getLocalizedMessage()!=null){
-                                        errorStr = e.getLocalizedMessage();
-                                    } else if(e.getStackTrace()!=null && e.getStackTrace().length>0){
-                                        errorStr = e.getStackTrace()[0].toString();
-                                    } else {
-                                        errorStr = "Unknown Error.";
-                                    }
-
-                                    LoggerService.insertLog(clsName, "Error on Logs Upload", errorStr);
-                                    Log.e("OKHTTP", errorStr);
-
-                                }
-
-                                @Override
-                                public void onResponse(Call call, okhttp3.Response response) throws IOException {
-
-                                    String responseString = response.body().string();
-
-                                    try {
-
-                                        JSONObject responseJSON = new JSONObject(responseString);
-                                        if(responseJSON.getJSONObject("status").getBoolean("successful")){
-
-                                            Log.i("OKHTTP", "SUCCESS on Logs Upload!!!");
-                                            LoggerService.insertLog(clsName, "Upload Logs DONE.",
-                                                    "SUCCESS on Logs Upload!!!");
-
-                                            dbService.saveLogUpdates();
-
-                                        }
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-
-
-                        } else {
-                            Log.i("LogData", "LOGDATA results is null.");
-                            LoggerService.insertLog(clsName, "LogData not found!",
-                                    "LOGDATA results is null.");
-                        }
-
-                    }
-                });
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                LoggerService.insertLog(clsName, e.getMessage(), e.getStackTrace()[0].getClassName()
-                        + ":" + e.getStackTrace()[0].getLineNumber());
-            } finally {
-                logRealm.closeDialog();
-            }
-
-            return null;
-        }
-    }*/
-
 
     private static class UploadLogsTask extends AsyncTask<Void, Void, Void>{
 
@@ -1283,9 +737,6 @@ public class ThreadService extends Service {
                             }
 
                             Log.i("Upload MinAgg", "UPLOAD MINAGG Total Count: " + results.size());
-
-                            //final int totalCount = results.size();
-                            //final int uploadParts = (totalCount / LIMIT) + 1;
 
                             for (FitWorkDataMinAgg minAgg : limitedResults) {
 
@@ -1430,8 +881,6 @@ public class ThreadService extends Service {
             e.printStackTrace();
         }
 
-        //EventBus.getDefault().post(new EventWorkSummary(null, false));
-
     }
 
     private static class PrepareSummaryPersonTask extends AsyncTask<Void, Void, SummaryWorkPerson>{
@@ -1448,10 +897,6 @@ public class ThreadService extends Service {
             if(summaryWorkPerson==null){
                 return;
             }
-
-            // Pause UI for 3 seconds
-            /*mHandler.removeCallbacks(runUI);
-            mHandler.postDelayed(runUI, 3000);*/
 
             Message msg = new Message();
             msg.what = AppDefaults.EVENT_WORKSUMMARY;
@@ -1617,17 +1062,11 @@ public class ThreadService extends Service {
                 mailType = mailData[0].getMailType();
 
                 Log.i("SendMailTask", "About to instantiate GMail...");
-                //publishProgress("Processing input....");
                 GmailSender androidEmail = new GmailSender(mailData[0]);
-                //publishProgress("Preparing mail message....");
                 androidEmail.createEmailMessage();
-                //publishProgress("Sending email....");
                 androidEmail.sendEmail();
-                //publishProgress("Email Sent.");
-                //Log.i("SendMailTask", "Mail Sent.");
                 return true;
             } catch (Exception e) {
-                //publishProgress(e.getMessage());
                 Log.e("SendMailTask", e.getMessage(), e);
                 LoggerService.insertLog(clsName, e.getMessage(), e.getStackTrace()[0].getClassName()
                         + ":" + e.getStackTrace()[0].getLineNumber());
