@@ -11,9 +11,7 @@ public class AppDefaults {
 
     // --- Log Defaults ---
     public static final String LOG_SRC_TYPE = "FcCollector";
-    //public static final String LOG_SRC_ID = "COLL" + Settings.siteId + "001";
-    public static final String REMOTE_LOGCAT_APIKEY = "59b2509945e98";
-    //public static final String LOG_LOCATION_ID = "212901"; -> transferred to Settings
+    public static final String REMOTE_LOGCAT_APIKEY = "**********";
 
     // --- API Defaults ---
     public static final String SCRT_KEY = "";
@@ -24,7 +22,6 @@ public class AppDefaults {
     public static final String API_RETRIEVE_URL = "http://portal.fitconnect.club/api/retrieveProfileForCollector.ashx";
     public static final String API_INSERTDATA_URL = "http://portal.fitconnect.club/api/insertActivityData.ashx";
     public static final String API_INSERTLOGDATA_URL = "http://portal.fitconnect.club/api/insertLogData.ashx";
-    //public static final String EMAIL = "00024";
 
     public static final int PERMISSION_WRITE_STORAGE = 1;
 
@@ -48,7 +45,6 @@ public class AppDefaults {
     public static final String REALMLOG_REP_FILENAME = "fitConLogDb_REP.realm"; // Replica LogDB Filename
     public static final String REALM_REP_DIR = "RealmReplicas";
     public static final String REALM_BKP_DIR = "RealmBackups";
-    //public static final String REALM_BKP_OLD_DIR = "RealmBackupFiles";
 
     // --- Crashing Defaults ---
     public static final String CRASH_UNCAUGHT = "UncaughtException";  // Uncaught
@@ -91,13 +87,5 @@ public class AppDefaults {
     public static final String DATA_HR = "info.hmm.antplusreceiver.antplusservice.DATA_HR";
     public static final String DATA_SC = "info.hmm.antplusreceiver.antplusservice.DATA_SC";
     public static final String DATA_STATUS = "info.hmm.antplusreceiver.antplusservice.DATA_STATUS";
-
-    // --- Javascript Defaults ---
-    /*public static final String JS_GET = "(function() { return document.getElementById(\"div_5_3_add\").value; })();";
-    public static final String JS_SET = "(function() { document.getElementById(\"div_5_3_add\").value = \""
-            + StaticVariables.machineIP + "\"; })();";
-    public static final String JS_SAVE = "net_setting_apply();";
-    public static final String JS_RESTART = "javascript:document.form_do_cmd.submit()";*/
-
 
 }
