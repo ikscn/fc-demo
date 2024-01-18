@@ -70,37 +70,6 @@ public class LogData extends RealmObject {
 
     }
 
-    /*public LogDataUpload prepareUpload(){
-
-        LogDataUpload data = new LogDataUpload();
-        data.setInsertDate(AppUtils.getUploadDateString(this.getInsertDate()));
-        data.setSourceType(this.getSourceType());
-        data.setSourceId(this.getSourceId());
-        data.setLocationId(this.getLocationId());
-        data.setInsertedByClass(this.getInsertedByClass());
-        data.setMessage(this.getMessage());
-        data.setErrorDesc(this.getErrorDesc());
-
-        return data;
-
-    }*/
-
-    /*public String toJSONStringOld(){
-
-        String jsonString =
-                        "{"
-                        + "\"insertDate\":\""+ AppUtils.getUploadDateString(this.insertDate) +  "\""
-                        + ",\"sourceType\":\"" + this.sourceType + "\""
-                        + ",\"sourceId\":\"" + this.sourceId + "\""
-                        + ",\"locationId\":\"" + this.locationId + "\""
-                        + ",\"insertedByClass\":\"" + this.insertedByClass + "\""
-                        + ",\"message\":\"" + this.message + "\""
-                        + ",\"errorDesc\":\"" + this.errorDesc + "\""
-                        + "}";
-
-        return jsonString;
-    }*/
-
     public String getSourceType() {
         return sourceType;
     }
