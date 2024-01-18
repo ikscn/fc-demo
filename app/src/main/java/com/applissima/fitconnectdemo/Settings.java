@@ -28,12 +28,10 @@ public class Settings {
     public static boolean lockAppForDevice = false;
     public static int siteId;
     public static int locationId;
-    //public static String appVersion;
     public static List<String> hubList;
     public static String clubName;
     public static String clubEmail;
     public static String clubPw;
-    //public static String hubMacAddress;
 
     public static void fromRealmDB(SettingsData data){
         simulationPersonCount = data.getSimulationPersonCount();
@@ -56,8 +54,6 @@ public class Settings {
         clubName = data.getClubName();
         clubEmail = data.getClubEmail();
         clubPw = data.getClubPw();
-        //appVersion = data.getAppVersion();
-        //hubMacAddress = data.getHubMacAddress();
     }
 
     public static boolean isJSONValid(String jsonString){
@@ -87,8 +83,6 @@ public class Settings {
                     && jsonObject.has("clubName")
                     && jsonObject.has("clubEmail")
                     && jsonObject.has("clubPw")
-                    //&& jsonObject.has("appVersion")
-                    //&& jsonObject.has("hubMacAddress")
                ){
 
                 isValid = true;
@@ -127,8 +121,6 @@ public class Settings {
             clubName = jsonObject.getString("clubName");
             clubEmail = jsonObject.getString("clubEmail");
             clubPw = jsonObject.getString("clubPw");
-            //appVersion = jsonObject.getString("appVersion");
-            //hubMacAddress = jsonObject.getString("hubMacAddress");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -160,8 +152,6 @@ public class Settings {
                         + ",\"clubName\":\"" + clubName + "\""
                         + ",\"clubEmail\":\"" + clubEmail + "\""
                         + ",\"clubPw\":\"" + clubPw + "\""
-                        //+ ",\"appVersion\":\"" + appVersion + "\""
-                        //+ ",\"hubMacAddress\":\"" + hubMacAddress + "\""
                         + "}";
 
         return jsonString;
