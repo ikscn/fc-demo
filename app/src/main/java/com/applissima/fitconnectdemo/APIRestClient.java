@@ -25,7 +25,6 @@ public class APIRestClient {
     public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         client.setMaxRetriesAndTimeout(3, 30000);
         client.post(getAbsoluteUrl(url), params, responseHandler);
-        //client.post(context, url, new Header[1], params, type, responseHandler);
     }
 
 
