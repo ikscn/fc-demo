@@ -27,7 +27,6 @@ public class LoggerService {
             @Override
             public void run() {
 
-                //String networkStatus = StaticVariables.cntWifiOn > 0 ? "Wifi is connected." :"Wifi is not connected.";
                 String networkStatusText = "Wifi connected: '%" + StaticVariables.getNetworkOnPerc("wifi")
                         + "' Internet connected: '%" + StaticVariables.getNetworkOnPerc("internet")
                         + "' Hub connected: '%" + StaticVariables.getNetworkOnPerc("hub") + "'";
@@ -42,9 +41,6 @@ public class LoggerService {
 
             }
         }).start();
-
-
-
     }
 
     public static void insertLog(final String className, final String message, final String errorDesc){
@@ -55,8 +51,6 @@ public class LoggerService {
                 .Builder()
                 .deleteRealmIfMigrationNeeded()
                 .name(AppDefaults.REALMLOG_FILENAME)
-                //.directory(Environment.getExternalStorageDirectory())
-                //.modules(MainActivity.FitConLogModule.class)
                 .build();
 
         Realm logRealm = null;
@@ -165,7 +159,6 @@ public class LoggerService {
                 .Builder()
                 .deleteRealmIfMigrationNeeded()
                 .name(AppDefaults.REALMLOG_FILENAME)
-                //.directory(Environment.getExternalStorageDirectory())
                 .build();
 
         Realm logRealm = null;
