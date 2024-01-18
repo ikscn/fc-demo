@@ -62,8 +62,6 @@ public class FwPersonAdapter extends RecyclerView.Adapter<FwPersonAdapter.ViewHo
         }
 
         public void resizeItems(){
-
-            //int gridSize = FitWorkActivity.gridSize;
             // Resize items
             // Card size
             ViewGroup.LayoutParams params = fitPersonCardView.getLayoutParams();
@@ -143,20 +141,6 @@ public class FwPersonAdapter extends RecyclerView.Adapter<FwPersonAdapter.ViewHo
     public int getItemCount() {
         return mCardList.size();
     }
-
-    /*public int getGridSize(){
-        int gridSize;
-        if (getItemCount()<=4) {
-            gridSize = 2;
-        } else if(getItemCount() <= 9){
-            gridSize = 3;
-        } else if(getItemCount() <= 16){
-            gridSize = 4;
-        } else {
-            gridSize = 5;
-        }
-        return gridSize;
-    }*/
 
     public int getZoneColor(int currentZone){
         switch (currentZone){
